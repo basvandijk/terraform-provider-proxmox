@@ -18,7 +18,7 @@ Note: this plugin is both a provider and provisioner in one, which is why it nee
 
 ## Build local source
 
-Requires https://github.com/Telmate/proxmox-api-go
+Requires https://github.com/basvandijk/proxmox-api-go
 
 ```
 export GOPATH=`pwd`
