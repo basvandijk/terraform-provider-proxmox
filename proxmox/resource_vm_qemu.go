@@ -41,6 +41,11 @@ func resourceVmQemu() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
+			"bios": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "seabios",
+			},
 			"onboot": {
 				Type:     schema.TypeBool,
 				Optional: true,
@@ -444,6 +449,7 @@ func resourceVmQemuCreate(d *schema.ResourceData, meta interface{}) error {
 		Name:         vmName,
 		Description:  d.Get("desc").(string),
 		Pool:         d.Get("pool").(string),
+		Bios:         d.Get("bios").(string),
 		Onboot:       d.Get("onboot").(bool),
 		Boot:         d.Get("boot").(string),
 		BootDisk:     d.Get("bootdisk").(string),
@@ -635,6 +641,7 @@ func resourceVmQemuUpdate(d *schema.ResourceData, meta interface{}) error {
 		Name:         d.Get("name").(string),
 		Description:  d.Get("desc").(string),
 		Pool:         d.Get("pool").(string),
+		Bios:         d.Get("bios").(string),
 		Onboot:       d.Get("onboot").(bool),
 		Boot:         d.Get("boot").(string),
 		BootDisk:     d.Get("bootdisk").(string),
@@ -734,6 +741,7 @@ func resourceVmQemuRead(d *schema.ResourceData, meta interface{}) error {
 	d.Set("name", config.Name)
 	d.Set("desc", config.Description)
 	d.Set("pool", config.Pool)
+	d.Set("bios", config.Bios)
 	d.Set("onboot", config.Onboot)
 	d.Set("boot", config.Boot)
 	d.Set("bootdisk", config.BootDisk)
